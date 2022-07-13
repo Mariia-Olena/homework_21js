@@ -30,19 +30,18 @@ const menu = {
     ]
 };
 
-function createOrder(order, cb) {
+function createOrder(order) {
+    const res = [];
     order.forEach((elem, index) => {
         setTimeout(() => {
-            cb(`${elem.item} done`, index);
+            res[index] = `${elem.item} done`;
         }, elem.time);
     });
+    return res;
 }
 
-const res = [];
-createOrder(menu.burgerMenu, (result, index) => {
-    res[index] = result;
-});
-
+// eslint-disable-next-line no-unused-vars
+const result = createOrder(menu.burgerMenu);
 
 let count = 0;
 const delay = 500;
