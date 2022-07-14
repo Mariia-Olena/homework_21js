@@ -30,26 +30,32 @@ const menu = {
     ]
 };
 
-function createOrder(order) {
+function createOrder(order, cb) {
     const res = [];
+
     order.forEach((elem, index) => {
         setTimeout(() => {
             res[index] = `${elem.item} done`;
+            if (Object.keys(res).length === order.length) {
+                cb(res);
+            }
         }, elem.time);
     });
-    return res;
+
 }
 
-// eslint-disable-next-line no-unused-vars
-const result = createOrder(menu.burgerMenu);
+createOrder(menu.burgerMenu, (arr) => {
+    // eslint-disable-next-line no-console
+    console.log(arr);
+});
+
 
 let count = 0;
 const delay = 500;
 const stop = 5;
 let id = setTimeout(function tik() {
     count++;
-    // eslint-disable-next-line no-console
-    console.log(`Timer ${count}`);
+    // console.log(`Timer ${count}`);
 
     id = setTimeout(tik, delay);
 
